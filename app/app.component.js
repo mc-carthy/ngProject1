@@ -27,7 +27,7 @@ System.register(['angular2/core', './courses.component'], function(exports_1, co
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: '<h1>Hello Angular</h1> <courses></courses>',
+                        template: '<h1>Hello Angular</h1><courses></courses>',
                         directives: [courses_component_1.CoursesComponent]
                     }), 
                     __metadata('design:paramtypes', [])
