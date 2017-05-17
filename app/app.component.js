@@ -25,7 +25,7 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n        <button class=\"btn btn-primary\" [class.active]=\"isActive\">Submit</button>\n    "
+                        template: "\n        <button \n            class=\"btn btn-primary\"\n            [style.backgroundColor]=\"isActive ? 'blue' : 'grey'\">Submit</button>\n    "
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);
