@@ -20,12 +20,18 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         execute: function() {
             AppComponent = (function () {
                 function AppComponent() {
-                    this.isActive = true;
                 }
+                AppComponent.prototype.onClick = function ($event) {
+                    // $event.stopPropagation();
+                    console.log("clicked", $event);
+                };
+                AppComponent.prototype.onDivClick = function ($event) {
+                    console.log("clicked div", $event);
+                };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n        <button \n            class=\"btn btn-primary\"\n            [style.backgroundColor]=\"isActive ? 'blue' : 'grey'\">Submit</button>\n    "
+                        template: "\n        <div (click)=\"onDivClick()\">\n            <button on-click=\"onClick($event)\">Submit</button>\n        </div>\n    "
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);

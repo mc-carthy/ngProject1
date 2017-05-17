@@ -3,13 +3,22 @@ import {Component} from 'angular2/core';
 @Component({
     selector: 'my-app',
     template: `
-        <button 
-            class="btn btn-primary"
-            [style.backgroundColor]="isActive ? 'blue' : 'grey'">Submit</button>
+        <div (click)="onDivClick()">
+            <button on-click="onClick($event)">Submit</button>
+        </div>
     `
 })
 
 export class AppComponent
 { 
-    isActive = true;
+    onClick($event)
+    {
+        // $event.stopPropagation();
+        console.log("clicked", $event);
+    }
+
+    onDivClick($event)
+    {
+        console.log("clicked div", $event);
+    }
 }
