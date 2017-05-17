@@ -3,14 +3,22 @@ import {Component} from 'angular2/core';
 @Component({
     selector: 'my-app',
     template: `
-        <input type="text" [(ngModel)]="title" />
-
-        <input type="button" (click)="title = ''" value="Clear" />
-        Preview: {{ title }}
+        <i 
+            class="glyphicon"
+            [class.glyphicon-star]="isFavourite"
+            [class.glyphicon-star-empty]="!isFavourite"
+            (click)="onClick()"
+        >
+        </i>
     `
 })
 
 export class AppComponent
 { 
-    title = "Angular App";
+    isFavourite = false;
+
+    onClick()
+    {
+        this.isFavourite = !this.isFavourite;
+    }
 }

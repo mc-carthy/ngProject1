@@ -20,12 +20,15 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         execute: function() {
             AppComponent = (function () {
                 function AppComponent() {
-                    this.title = "Angular App";
+                    this.isFavourite = false;
                 }
+                AppComponent.prototype.onClick = function () {
+                    this.isFavourite = !this.isFavourite;
+                };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n        <input type=\"text\" [(ngModel)]=\"title\" />\n\n        <input type=\"button\" (click)=\"title = ''\" value=\"Clear\" />\n        Preview: {{ title }}\n    "
+                        template: "\n        <i \n            class=\"glyphicon\"\n            [class.glyphicon-star]=\"isFavourite\"\n            [class.glyphicon-star-empty]=\"!isFavourite\"\n            (click)=\"onClick()\"\n        >\n        </i>\n    "
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);
