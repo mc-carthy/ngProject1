@@ -20,18 +20,12 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         execute: function() {
             AppComponent = (function () {
                 function AppComponent() {
+                    this.title = "Angular App";
                 }
-                AppComponent.prototype.onClick = function ($event) {
-                    // $event.stopPropagation();
-                    console.log("clicked", $event);
-                };
-                AppComponent.prototype.onDivClick = function ($event) {
-                    console.log("clicked div", $event);
-                };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n        <div (click)=\"onDivClick()\">\n            <button on-click=\"onClick($event)\">Submit</button>\n        </div>\n    "
+                        template: "\n        <input type=\"text\" [(ngModel)]=\"title\" />\n\n        <input type=\"button\" (click)=\"title = ''\" value=\"Clear\" />\n        Preview: {{ title }}\n    "
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);
