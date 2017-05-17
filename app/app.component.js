@@ -20,13 +20,12 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         execute: function() {
             AppComponent = (function () {
                 function AppComponent() {
-                    this.title = "Angular App";
-                    this.imageUrl = "http://lorempixel.com/400/200/";
+                    this.isActive = true;
                 }
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n        <h1>{{ title }}</h1>\n        \n        <img src=\"{{ imageUrl }}\" />\n        <img [src]=\"imageUrl\" />\n        <img bind-src=\"imageUrl\" />\n    "
+                        template: "\n        <button class=\"btn btn-primary\" [class.active]=\"isActive\">Submit</button>\n    "
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);
