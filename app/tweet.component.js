@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1, context_1) {
+System.register(['angular2/core', './like.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,43 +10,38 @@ System.register(['angular2/core'], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
-    var LikeComponent;
+    var core_1, like_component_1;
+    var TweetComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (like_component_1_1) {
+                like_component_1 = like_component_1_1;
             }],
         execute: function() {
-            LikeComponent = (function () {
-                function LikeComponent() {
-                    this.totalLikes = 0;
-                    this.isLiked = false;
+            TweetComponent = (function () {
+                function TweetComponent() {
+                    console.log(this.data);
                 }
-                LikeComponent.prototype.onClick = function () {
-                    this.isLiked = !this.isLiked;
-                    this.totalLikes += this.isLiked ? 1 : -1;
-                };
                 __decorate([
                     core_1.Input(), 
                     __metadata('design:type', Object)
-                ], LikeComponent.prototype, "totalLikes", void 0);
-                __decorate([
-                    core_1.Input(), 
-                    __metadata('design:type', Object)
-                ], LikeComponent.prototype, "isLiked", void 0);
-                LikeComponent = __decorate([
+                ], TweetComponent.prototype, "data", void 0);
+                TweetComponent = __decorate([
                     core_1.Component({
-                        selector: 'like',
-                        templateUrl: "app/like.template.html",
-                        styles: ["\n        .glyphicon-heart {\n            color: #ccc;\n            cursor: pointer;\n        }\n\n        .highlighted {\n            color: deeppink;\n        }\n    "]
+                        selector: 'tweet',
+                        templateUrl: "app/tweet.template.html",
+                        styles: ["\n        .handle {\n            color: #ccc;\n        }\n        \n        .media {\n            margin-bottom: 20px;\n        }\n        \n        .media-object {\n            border-radius: 10px;\n        }\n    "],
+                        directives: [like_component_1.LikeComponent]
                     }), 
                     __metadata('design:paramtypes', [])
-                ], LikeComponent);
-                return LikeComponent;
+                ], TweetComponent);
+                return TweetComponent;
             }());
-            exports_1("LikeComponent", LikeComponent);
+            exports_1("TweetComponent", TweetComponent);
         }
     }
 });
-//# sourceMappingURL=like.component.js.map
+//# sourceMappingURL=tweet.component.js.map

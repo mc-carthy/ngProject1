@@ -18,7 +18,7 @@ import {Component, Input} from 'angular2/core';
 export class LikeComponent
 { 
     @Input() totalLikes = 0;
-    @Input('is-liked') isLiked = false;
+    @Input() isLiked = false;
     
     onClick()
     {
