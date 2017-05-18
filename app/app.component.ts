@@ -2,20 +2,21 @@ import {Component} from 'angular2/core';
 
 @Component({
     selector: 'my-app',
-    // The template shows two different methods of hiding the DOM elements, 
-    // the [hidden] method will show up in the DOM inspector, the *ngIf will not
-    // Use *ngIf for larger element trees
+    // The ngSwitchDefault is redundant here as we've initialised viewMode in AppComponent
     template: `
-        <div *ngIf="courses.length > 0">
-            List of courses
-        </div>
-        <div [hidden]="courses.length > 0">
-            You don't have any courses yet
+        <ul class="nav nav-pills">
+            <li [class.active]="viewMode == 'map'"><a (click)="viewMode = 'map'">Map View</a></li>
+            <li [class.active]="viewMode == 'list'"><a (click)="viewMode = 'list'">List View</a></li>
+        </ul>
+
+        <div [ngSwitch]="viewMode">
+            <template [ngSwitchWhen]="'map'" ngSwitchDefault>Map View Content</template>
+            <template [ngSwitchWhen]="'list'">List View Content</template>
         </div>
     `
 })
 
 export class AppComponent
-{ 
-    courses = ["test"];
+{
+    viewMode = 'map';
 }
