@@ -1,24 +1,18 @@
 import {Component} from 'angular2/core';
+import {FavouriteComponent} from './favourite.component';
 
 @Component({
     selector: 'my-app',
     template: `
-        <i 
-            class="glyphicon"
-            [class.glyphicon-star]="isFavourite"
-            [class.glyphicon-star-empty]="!isFavourite"
-            (click)="onClick()"
-        >
-        </i>
-    `
+        <favourite [is-favourite]="post.isFavourite"></favourite>
+    `,
+    directives: [FavouriteComponent]
 })
 
 export class AppComponent
 { 
-    isFavourite = false;
-
-    onClick()
-    {
-        this.isFavourite = !this.isFavourite;
+    post = {
+        title: "Title",
+        isFavourite: true
     }
 }
