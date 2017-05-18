@@ -2,7 +2,12 @@ import {Component, Input, Output, EventEmitter} from 'angular2/core';
 
 @Component({
     selector: 'favourite',
-    templateUrl: `app/favourite.template.html`
+    templateUrl: `app/favourite.template.html`,
+    styles: [`
+        .glyphicon-star {
+            color: orange;
+        }
+    `]
 })
 
 export class FavouriteComponent

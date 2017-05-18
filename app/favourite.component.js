@@ -38,7 +38,8 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 FavouriteComponent = __decorate([
                     core_1.Component({
                         selector: 'favourite',
-                        templateUrl: "app/favourite.template.html"
+                        templateUrl: "app/favourite.template.html",
+                        styles: ["\n        .glyphicon-star {\n            color: orange;\n        }\n    "]
                     }), 
                     __metadata('design:paramtypes', [])
                 ], FavouriteComponent);

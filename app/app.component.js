@@ -34,7 +34,7 @@ System.register(['angular2/core', './favourite.component'], function(exports_1, 
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n        <favourite [is-favourite]=\"post.isFavourite\" (favourite-change)=\"onFavouriteChange($event)\"></favourite>\n    ",
+                        template: "\n        <i class=\"glyphicon glyphicon-star\"></i>\n        <favourite [is-favourite]=\"post.isFavourite\" (favourite-change)=\"onFavouriteChange($event)\"></favourite>\n    ",
                         directives: [favourite_component_1.FavouriteComponent]
                     }), 
                     __metadata('design:paramtypes', [])
