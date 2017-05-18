@@ -21,16 +21,20 @@ System.register(['angular2/core'], function(exports_1, context_1) {
             FavouriteComponent = (function () {
                 function FavouriteComponent() {
                     this.isFavourite = false;
+                    this.change = new core_1.EventEmitter();
                 }
-                // Non-aliased version shown below
-                // @Input('is-favourite') isFavourite = false;
                 FavouriteComponent.prototype.onClick = function () {
                     this.isFavourite = !this.isFavourite;
+                    this.change.emit({ newValue: this.isFavourite });
                 };
                 __decorate([
                     core_1.Input('is-favourite'), 
                     __metadata('design:type', Object)
                 ], FavouriteComponent.prototype, "isFavourite", void 0);
+                __decorate([
+                    core_1.Output('favourite-change'), 
+                    __metadata('design:type', Object)
+                ], FavouriteComponent.prototype, "change", void 0);
                 FavouriteComponent = __decorate([
                     core_1.Component({
                         selector: 'favourite',
