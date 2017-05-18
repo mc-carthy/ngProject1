@@ -1,4 +1,4 @@
-System.register(['angular2/core', './favourite.component', './like.component', './voter.component', './tweet.component', './tweet.service'], function(exports_1, context_1) {
+System.register(['angular2/core'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,55 +10,27 @@ System.register(['angular2/core', './favourite.component', './like.component', '
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, favourite_component_1, like_component_1, voter_component_1, tweet_component_1, tweet_service_1;
+    var core_1;
     var AppComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
-            },
-            function (favourite_component_1_1) {
-                favourite_component_1 = favourite_component_1_1;
-            },
-            function (like_component_1_1) {
-                like_component_1 = like_component_1_1;
-            },
-            function (voter_component_1_1) {
-                voter_component_1 = voter_component_1_1;
-            },
-            function (tweet_component_1_1) {
-                tweet_component_1 = tweet_component_1_1;
-            },
-            function (tweet_service_1_1) {
-                tweet_service_1 = tweet_service_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
-                function AppComponent(tweetService) {
-                    this.tweet = {
-                        totalLikes: 10,
-                        isLiked: false
-                    };
-                    this.post = {
-                        voteCount: 10,
-                        myVote: 0
-                    };
-                    this.tweets = tweetService.getTweets();
+                function AppComponent() {
+                    this.courses = ["test"];
                 }
-                AppComponent.prototype.onVote = function ($event) {
-                    console.log($event);
-                };
-                AppComponent.prototype.onFavouriteChange = function ($event) {
-                    console.log($event);
-                };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n        <div *ngFor=\"#tweet of tweets\">\n            <tweet [data]=\"tweet\"></tweet>\n        </div>\n    ",
-                        directives: [favourite_component_1.FavouriteComponent, like_component_1.LikeComponent, voter_component_1.VoterComponent, tweet_component_1.TweetComponent],
-                        providers: [tweet_service_1.TweetService]
+                        // The template shows two different methods of hiding the DOM elements, 
+                        // the [hidden] method will show up in the DOM inspector, the *ngIf will not
+                        // Use *ngIf for larger element trees
+                        template: "\n        <div *ngIf=\"courses.length > 0\">\n            List of courses\n        </div>\n        <div [hidden]=\"courses.length > 0\">\n            You don't have any courses yet\n        </div>\n    "
                     }), 
-                    __metadata('design:paramtypes', [tweet_service_1.TweetService])
+                    __metadata('design:paramtypes', [])
                 ], AppComponent);
                 return AppComponent;
             }());
