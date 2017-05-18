@@ -1,4 +1,4 @@
-System.register(['angular2/core', './favourite.component'], function(exports_1, context_1) {
+System.register(['angular2/core', './favourite.component', './like.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', './favourite.component'], function(exports_1, 
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, favourite_component_1;
+    var core_1, favourite_component_1, like_component_1;
     var AppComponent;
     return {
         setters:[
@@ -19,6 +19,9 @@ System.register(['angular2/core', './favourite.component'], function(exports_1, 
             },
             function (favourite_component_1_1) {
                 favourite_component_1 = favourite_component_1_1;
+            },
+            function (like_component_1_1) {
+                like_component_1 = like_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -34,8 +37,8 @@ System.register(['angular2/core', './favourite.component'], function(exports_1, 
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n        <i class=\"glyphicon glyphicon-star\"></i>\n        <favourite [is-favourite]=\"post.isFavourite\" (favourite-change)=\"onFavouriteChange($event)\"></favourite>\n    ",
-                        directives: [favourite_component_1.FavouriteComponent]
+                        template: "\n        <like></like>\n    ",
+                        directives: [favourite_component_1.FavouriteComponent, like_component_1.LikeComponent]
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);
