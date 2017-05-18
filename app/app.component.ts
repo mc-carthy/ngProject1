@@ -5,13 +5,18 @@ import {LikeComponent} from './like.component';
 @Component({
     selector: 'my-app',
     template: `
-        <like></like>
+        <like [totalLikes]="tweet.totalLikes" [is-liked]="tweet.isLiked"></like>
     `,
     directives: [FavouriteComponent, LikeComponent]
 })
 
 export class AppComponent
 { 
+    tweet = {
+        totalLikes: 10,
+        isLiked: false
+    }
+
     post = {
         title: "Title",
         isFavourite: true

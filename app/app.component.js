@@ -26,6 +26,10 @@ System.register(['angular2/core', './favourite.component', './like.component'], 
         execute: function() {
             AppComponent = (function () {
                 function AppComponent() {
+                    this.tweet = {
+                        totalLikes: 10,
+                        isLiked: false
+                    };
                     this.post = {
                         title: "Title",
                         isFavourite: true
@@ -37,7 +41,7 @@ System.register(['angular2/core', './favourite.component', './like.component'], 
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n        <like></like>\n    ",
+                        template: "\n        <like [totalLikes]=\"tweet.totalLikes\" [is-liked]=\"tweet.isLiked\"></like>\n    ",
                         directives: [favourite_component_1.FavouriteComponent, like_component_1.LikeComponent]
                     }), 
                     __metadata('design:paramtypes', [])
