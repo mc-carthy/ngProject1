@@ -1,4 +1,4 @@
-System.register(['angular2/core', './favourite.component'], function(exports_1, context_1) {
+System.register(['angular2/core'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,25 +10,31 @@ System.register(['angular2/core', './favourite.component'], function(exports_1, 
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, favourite_component_1;
+    var core_1;
     var AppComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
-            },
-            function (favourite_component_1_1) {
-                favourite_component_1 = favourite_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
                 function AppComponent() {
+                    this.canSave = false;
                 }
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n        <favourite></favourite>\n    ",
-                        directives: [favourite_component_1.FavouriteComponent]
+                        /* ngStyle refactors this code:
+                    
+                        [style.backgroundColor]="canSave ? 'blue' : 'grey'"
+                        [style.color]="canSave ? 'white' : 'black'"
+                        [style.fontWeight]="canSave ? 'bold' : 'normal'"
+                    
+                        However, this does highlight that maybe a class should be used instead
+                    
+                        */
+                        template: "\n        <button\n            [ngStyle]=\"{\n                backgroundColor: canSave ? 'blue' : 'grey',\n                color: canSave ? 'white' : 'black',\n                fontWeight: canSave ? 'bold' : 'normal'\n            }\"\n        >Submit</button>\n    "
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);
