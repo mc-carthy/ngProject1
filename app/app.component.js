@@ -1,4 +1,4 @@
-System.register(['angular2/core', './summary.pipe'], function(exports_1, context_1) {
+System.register(['angular2/core', './favourite.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,29 +10,25 @@ System.register(['angular2/core', './summary.pipe'], function(exports_1, context
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, summary_pipe_1;
+    var core_1, favourite_component_1;
     var AppComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (summary_pipe_1_1) {
-                summary_pipe_1 = summary_pipe_1_1;
+            function (favourite_component_1_1) {
+                favourite_component_1 = favourite_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
                 function AppComponent() {
-                    this.post = {
-                        title: "Angular 2 for beginners",
-                        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eu pulvinar dui. Nullam convallis orci elit, et posuere felis volutpat auctor. Phasellus ornare augue at tempor condimentum. Quisque ultricies quis nunc a malesuada. Nunc non nibh sapien. Vestibulum porttitor lacinia est a imperdiet. Praesent ac massa volutpat, tristique nunc a, ullamcorper turpis."
-                    };
                 }
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n        {{ post.title }}\n        <br/>\n        {{ post.body | summary:10 }}\n    ",
-                        pipes: [summary_pipe_1.SummaryPipe]
+                        template: "\n        <favourite></favourite>\n    ",
+                        directives: [favourite_component_1.FavouriteComponent]
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);
