@@ -1,4 +1,4 @@
-System.register(['angular2/core', './bootstrap.panel.component'], function(exports_1, context_1) {
+System.register(['angular2/core', './zippy.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,15 +10,15 @@ System.register(['angular2/core', './bootstrap.panel.component'], function(expor
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, bootstrap_panel_component_1;
+    var core_1, zippy_component_1;
     var AppComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (bootstrap_panel_component_1_1) {
-                bootstrap_panel_component_1 = bootstrap_panel_component_1_1;
+            function (zippy_component_1_1) {
+                zippy_component_1 = zippy_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -27,8 +27,8 @@ System.register(['angular2/core', './bootstrap.panel.component'], function(expor
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n        <bs-panel>\n            <div class=\"heading\">This is the heading!</div>\n            <div class=\"body\">This is the body!</div>\n            <div class=\"body\">This is another body!</div>\n        </bs-panel>\n    ",
-                        directives: [bootstrap_panel_component_1.BootstrapPanel]
+                        template: "\n        <zippy title=\"Who can see my stuff?\">\n            Content of who can see my stuff\n        </zippy>\n        <zippy title=\"Who can contact me?\">\n            Content of who can contact me\n        </zippy>\n    ",
+                        directives: [zippy_component_1.ZippyComponent]
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);
