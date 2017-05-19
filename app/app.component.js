@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1, context_1) {
+System.register(['angular2/core', './summary.pipe'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,28 +10,29 @@ System.register(['angular2/core'], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, summary_pipe_1;
     var AppComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (summary_pipe_1_1) {
+                summary_pipe_1 = summary_pipe_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
                 function AppComponent() {
-                    this.course = {
+                    this.post = {
                         title: "Angular 2 for beginners",
-                        rating: 4.9745,
-                        students: 5981,
-                        price: 99.95,
-                        releaseDate: new Date(2016, 3, 1)
+                        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eu pulvinar dui. Nullam convallis orci elit, et posuere felis volutpat auctor. Phasellus ornare augue at tempor condimentum. Quisque ultricies quis nunc a malesuada. Nunc non nibh sapien. Vestibulum porttitor lacinia est a imperdiet. Praesent ac massa volutpat, tristique nunc a, ullamcorper turpis."
                     };
                 }
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n        <br/>\n        {{ course.title | uppercase }}\n        <br/>\n        {{ course.students | number }}\n        <br/>\n        {{ course.rating | number:'1.2-2' }}\n        <br/>\n        {{ course.price | currency:'GBP':true:'2.2-2' }}\n        <br/>\n        {{ course.releaseDate | date:'MMM yyyy'}}\n        <br/>\n        {{ course | json }}\n    "
+                        template: "\n        {{ post.title }}\n        <br/>\n        {{ post.body | summary:10 }}\n    ",
+                        pipes: [summary_pipe_1.SummaryPipe]
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);

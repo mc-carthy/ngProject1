@@ -1,30 +1,20 @@
 import {Component} from 'angular2/core';
+import {SummaryPipe} from './summary.pipe';
 
 @Component({
     selector: 'my-app',
     template: `
+        {{ post.title }}
         <br/>
-        {{ course.title | uppercase }}
-        <br/>
-        {{ course.students | number }}
-        <br/>
-        {{ course.rating | number:'1.2-2' }}
-        <br/>
-        {{ course.price | currency:'GBP':true:'2.2-2' }}
-        <br/>
-        {{ course.releaseDate | date:'MMM yyyy'}}
-        <br/>
-        {{ course | json }}
-    `
+        {{ post.body | summary:10 }}
+    `,
+    pipes: [SummaryPipe]
 })
 
 export class AppComponent
 {
-    course = {
+    post = {
         title: "Angular 2 for beginners",
-        rating: 4.9745,
-        students: 5981,
-        price: 99.95,
-        releaseDate: new Date(2016, 3, 1)
+        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eu pulvinar dui. Nullam convallis orci elit, et posuere felis volutpat auctor. Phasellus ornare augue at tempor condimentum. Quisque ultricies quis nunc a malesuada. Nunc non nibh sapien. Vestibulum porttitor lacinia est a imperdiet. Praesent ac massa volutpat, tristique nunc a, ullamcorper turpis."
     }
 }
