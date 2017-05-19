@@ -20,21 +20,17 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         execute: function() {
             AppComponent = (function () {
                 function AppComponent() {
-                    this.canSave = false;
+                    this.task = {
+                        title: "Review Applications",
+                        assignee: {
+                            name: "Mick"
+                        }
+                    };
                 }
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        /* ngStyle refactors this code:
-                    
-                        [style.backgroundColor]="canSave ? 'blue' : 'grey'"
-                        [style.color]="canSave ? 'white' : 'black'"
-                        [style.fontWeight]="canSave ? 'bold' : 'normal'"
-                    
-                        However, this does highlight that maybe a class should be used instead
-                    
-                        */
-                        template: "\n        <button\n            [ngStyle]=\"{\n                backgroundColor: canSave ? 'blue' : 'grey',\n                color: canSave ? 'white' : 'black',\n                fontWeight: canSave ? 'bold' : 'normal'\n            }\"\n        >Submit</button>\n    "
+                        template: "\n        <ul>\n            <li>Title: {{ task.title }}</li>\n            <li>Assigned to: {{ task.assignee?.name }}</li>\n        </ul>\n    "
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);
