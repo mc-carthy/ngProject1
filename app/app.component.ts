@@ -2,21 +2,29 @@ import {Component} from 'angular2/core';
 
 @Component({
     selector: 'my-app',
-    // The ngSwitchDefault is redundant here as we've initialised viewMode in AppComponent
     template: `
-        <ul class="nav nav-pills">
-            <li [class.active]="viewMode == 'map'"><a (click)="viewMode = 'map'">Map View</a></li>
-            <li [class.active]="viewMode == 'list'"><a (click)="viewMode = 'list'">List View</a></li>
-        </ul>
-
-        <div [ngSwitch]="viewMode">
-            <template [ngSwitchWhen]="'map'" ngSwitchDefault>Map View Content</template>
-            <template [ngSwitchWhen]="'list'">List View Content</template>
-        </div>
+        <br/>
+        {{ course.title | uppercase }}
+        <br/>
+        {{ course.students | number }}
+        <br/>
+        {{ course.rating | number:'1.2-2' }}
+        <br/>
+        {{ course.price | currency:'GBP':true:'2.2-2' }}
+        <br/>
+        {{ course.releaseDate | date:'MMM yyyy'}}
+        <br/>
+        {{ course | json }}
     `
 })
 
 export class AppComponent
 {
-    viewMode = 'map';
+    course = {
+        title: "Angular 2 for beginners",
+        rating: 4.9745,
+        students: 5981,
+        price: 99.95,
+        releaseDate: new Date(2016, 3, 1)
+    }
 }

@@ -20,13 +20,18 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         execute: function() {
             AppComponent = (function () {
                 function AppComponent() {
-                    this.viewMode = 'map';
+                    this.course = {
+                        title: "Angular 2 for beginners",
+                        rating: 4.9745,
+                        students: 5981,
+                        price: 99.95,
+                        releaseDate: new Date(2016, 3, 1)
+                    };
                 }
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        // The ngSwitchDefault is redundant here as we've initialised viewMode in AppComponent
-                        template: "\n        <ul class=\"nav nav-pills\">\n            <li [class.active]=\"viewMode == 'map'\"><a (click)=\"viewMode = 'map'\">Map View</a></li>\n            <li [class.active]=\"viewMode == 'list'\"><a (click)=\"viewMode = 'list'\">List View</a></li>\n        </ul>\n\n        <div [ngSwitch]=\"viewMode\">\n            <template [ngSwitchWhen]=\"'map'\" ngSwitchDefault>Map View Content</template>\n            <template [ngSwitchWhen]=\"'list'\">List View Content</template>\n        </div>\n    "
+                        template: "\n        <br/>\n        {{ course.title | uppercase }}\n        <br/>\n        {{ course.students | number }}\n        <br/>\n        {{ course.rating | number:'1.2-2' }}\n        <br/>\n        {{ course.price | currency:'GBP':true:'2.2-2' }}\n        <br/>\n        {{ course.releaseDate | date:'MMM yyyy'}}\n        <br/>\n        {{ course | json }}\n    "
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);
