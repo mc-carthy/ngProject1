@@ -8,9 +8,15 @@
             type="text" 
             class="form-control" 
             required
+            minlength="3"
         >
-        <div class="alert alert-danger" *ngIf="!firstName.valid && firstName.touched">
-            First name is required.
+        <div *ngIf="firstName.touched && firstName.errors">
+            <div class="alert alert-danger" *ngIf="firstName.errors.required">
+                First name is required.
+            </div>
+            <div class="alert alert-danger" *ngIf="firstName.errors.minlength">
+                First name should not be less than {{ firstName.errors.minlength.requiredLength }} characters.
+            </div>
         </div>
     </div>
     <div class="form-group">
