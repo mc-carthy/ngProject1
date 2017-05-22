@@ -8,6 +8,9 @@
             ngControl="username"
             #username="ngForm">
     </div>
+    <div *ngIf="username.control.pending">
+        Checking for uniqueness...
+    </div>
     <div *ngIf="username.touched && username.errors">
         <div
             *ngIf="username.errors.required" 
