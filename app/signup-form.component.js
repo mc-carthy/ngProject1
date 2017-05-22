@@ -24,28 +24,27 @@ System.register(['angular2/core', 'angular2/common', './usernameValidators'], fu
                 usernameValidators_1 = usernameValidators_1_1;
             }],
         execute: function() {
-            SignUpFormComponent = (function () {
-                function SignUpFormComponent(fb) {
+            let SignUpFormComponent = class SignUpFormComponent {
+                constructor(fb) {
                     this.form = fb.group({
                         username: ['', common_1.Validators.compose([
                                 common_1.Validators.required,
                                 usernameValidators_1.UsernameValidators.cannotContainSpace
-                            ])],
+                            ]), usernameValidators_1.UsernameValidators.shouldBeUnique],
                         password: ['', common_1.Validators.required]
                     });
                 }
-                SignUpFormComponent.prototype.signup = function () {
+                signup() {
                     console.log(this.form.value);
-                };
-                SignUpFormComponent = __decorate([
-                    core_1.Component({
-                        selector: 'signup-form',
-                        templateUrl: 'app/signup-form.component.html'
-                    }), 
-                    __metadata('design:paramtypes', [common_1.FormBuilder])
-                ], SignUpFormComponent);
-                return SignUpFormComponent;
-            }());
+                }
+            };
+            SignUpFormComponent = __decorate([
+                core_1.Component({
+                    selector: 'signup-form',
+                    templateUrl: 'app/signup-form.component.html'
+                }), 
+                __metadata('design:paramtypes', [common_1.FormBuilder])
+            ], SignUpFormComponent);
             exports_1("SignUpFormComponent", SignUpFormComponent);
         }
     }

@@ -24,22 +24,30 @@ System.register(['angular2/core', './course.service', './auto-grow.directive'], 
                 auto_grow_directive_1 = auto_grow_directive_1_1;
             }],
         execute: function() {
-            CoursesComponent = (function () {
-                function CoursesComponent(courseService) {
+            let CoursesComponent = class CoursesComponent {
+                constructor(courseService) {
                     this.title = "The title of the courses page";
                     this.courses = courseService.getCourses();
                 }
-                CoursesComponent = __decorate([
-                    core_1.Component({
-                        selector: 'courses',
-                        template: "\n            <h2>Courses<h2>\n            {{ title }}\n            <input type=\"text\" autoGrow />\n            <ul>\n                <li *ngFor=\"#course of courses\">\n                    {{ course }}\n                </li>\n            <ul>\n        ",
-                        providers: [course_service_1.CourseService],
-                        directives: [auto_grow_directive_1.AutoGrowDirective]
-                    }), 
-                    __metadata('design:paramtypes', [course_service_1.CourseService])
-                ], CoursesComponent);
-                return CoursesComponent;
-            }());
+            };
+            CoursesComponent = __decorate([
+                core_1.Component({
+                    selector: 'courses',
+                    template: `
+            <h2>Courses<h2>
+            {{ title }}
+            <input type="text" autoGrow />
+            <ul>
+                <li *ngFor="#course of courses">
+                    {{ course }}
+                </li>
+            <ul>
+        `,
+                    providers: [course_service_1.CourseService],
+                    directives: [auto_grow_directive_1.AutoGrowDirective]
+                }), 
+                __metadata('design:paramtypes', [course_service_1.CourseService])
+            ], CoursesComponent);
             exports_1("CoursesComponent", CoursesComponent);
         }
     }

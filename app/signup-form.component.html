@@ -19,6 +19,11 @@
             class="alert alert-danger">
             Username cannot contain space
         </div>
+        <div
+            *ngIf="username.errors.shouldBeUnique" 
+            class="alert alert-danger">
+            Username is already taken
+        </div>
     </div>
     <div class="form-group">
         <label for="password">Password</label>

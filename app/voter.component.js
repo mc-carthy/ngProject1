@@ -18,48 +18,66 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            VoterComponent = (function () {
-                function VoterComponent() {
+            let VoterComponent = class VoterComponent {
+                constructor() {
                     this.voteCount = 0;
                     this.myVote = 0;
                     this.vote = new core_1.EventEmitter();
                 }
-                VoterComponent.prototype.onUpVote = function () {
+                onUpVote() {
                     if (this.myVote == 1) {
                         return;
                     }
                     this.myVote++;
                     this.vote.emit({ myVote: this.myVote });
-                };
-                VoterComponent.prototype.onDownVote = function () {
+                }
+                onDownVote() {
                     if (this.myVote == -1) {
                         return;
                     }
                     this.myVote--;
                     this.vote.emit({ myVote: this.myVote });
-                };
-                __decorate([
-                    core_1.Input("vote-count"), 
-                    __metadata('design:type', Object)
-                ], VoterComponent.prototype, "voteCount", void 0);
-                __decorate([
-                    core_1.Input("my-vote"), 
-                    __metadata('design:type', Object)
-                ], VoterComponent.prototype, "myVote", void 0);
-                __decorate([
-                    core_1.Output(), 
-                    __metadata('design:type', Object)
-                ], VoterComponent.prototype, "vote", void 0);
-                VoterComponent = __decorate([
-                    core_1.Component({
-                        selector: 'vote',
-                        templateUrl: "app/voter.template.html",
-                        styles: ["\n        .voter {\n            width: 20px;\n            text-align: center;\n            color: #999;\n        }\n\n        .vote-count {\n            font-size: 1.2em;\n        }\n\n        .vote-button {\n            cursor: pointer;\n        }\n\n        .highlighted {\n            font-weight: bold;\n            color: orange;\n        }\n    "]
-                    }), 
-                    __metadata('design:paramtypes', [])
-                ], VoterComponent);
-                return VoterComponent;
-            }());
+                }
+            };
+            __decorate([
+                core_1.Input("vote-count"), 
+                __metadata('design:type', Object)
+            ], VoterComponent.prototype, "voteCount", void 0);
+            __decorate([
+                core_1.Input("my-vote"), 
+                __metadata('design:type', Object)
+            ], VoterComponent.prototype, "myVote", void 0);
+            __decorate([
+                core_1.Output(), 
+                __metadata('design:type', Object)
+            ], VoterComponent.prototype, "vote", void 0);
+            VoterComponent = __decorate([
+                core_1.Component({
+                    selector: 'vote',
+                    templateUrl: `app/voter.template.html`,
+                    styles: [`
+        .voter {
+            width: 20px;
+            text-align: center;
+            color: #999;
+        }
+
+        .vote-count {
+            font-size: 1.2em;
+        }
+
+        .vote-button {
+            cursor: pointer;
+        }
+
+        .highlighted {
+            font-weight: bold;
+            color: orange;
+        }
+    `]
+                }), 
+                __metadata('design:paramtypes', [])
+            ], VoterComponent);
             exports_1("VoterComponent", VoterComponent);
         }
     }

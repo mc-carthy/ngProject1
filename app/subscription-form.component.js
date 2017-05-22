@@ -18,26 +18,25 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            SubscriptionFormComponent = (function () {
-                function SubscriptionFormComponent() {
+            let SubscriptionFormComponent = class SubscriptionFormComponent {
+                constructor() {
                     this.frequencies = [
                         { id: 1, label: 'Daily' },
                         { id: 2, label: 'Weekly' },
                         { id: 3, label: 'Monthly' }
                     ];
                 }
-                SubscriptionFormComponent.prototype.onSubscribe = function (form) {
+                onSubscribe(form) {
                     console.log(form);
-                };
-                SubscriptionFormComponent = __decorate([
-                    core_1.Component({
-                        selector: 'subscription-form',
-                        templateUrl: 'app/subscription-form.component.html'
-                    }), 
-                    __metadata('design:paramtypes', [])
-                ], SubscriptionFormComponent);
-                return SubscriptionFormComponent;
-            }());
+                }
+            };
+            SubscriptionFormComponent = __decorate([
+                core_1.Component({
+                    selector: 'subscription-form',
+                    templateUrl: 'app/subscription-form.component.html'
+                }), 
+                __metadata('design:paramtypes', [])
+            ], SubscriptionFormComponent);
             exports_1("SubscriptionFormComponent", SubscriptionFormComponent);
         }
     }

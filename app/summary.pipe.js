@@ -18,21 +18,18 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            SummaryPipe = (function () {
-                function SummaryPipe() {
-                }
-                SummaryPipe.prototype.transform = function (value, args) {
+            let SummaryPipe = class SummaryPipe {
+                transform(value, args) {
                     if (value) {
                         var limit = (args && args[0]) ? parseInt(args[0]) : 50;
                         return value.substring(0, limit) + "...";
                     }
-                };
-                SummaryPipe = __decorate([
-                    core_1.Pipe({ name: 'summary' }), 
-                    __metadata('design:paramtypes', [])
-                ], SummaryPipe);
-                return SummaryPipe;
-            }());
+                }
+            };
+            SummaryPipe = __decorate([
+                core_1.Pipe({ name: 'summary' }), 
+                __metadata('design:paramtypes', [])
+            ], SummaryPipe);
             exports_1("SummaryPipe", SummaryPipe);
         }
     }

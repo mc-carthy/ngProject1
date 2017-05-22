@@ -5,10 +5,8 @@ System.register([], function(exports_1, context_1) {
     return {
         setters:[],
         execute: function() {
-            TweetService = (function () {
-                function TweetService() {
-                }
-                TweetService.prototype.getTweets = function () {
+            class TweetService {
+                getTweets() {
                     return [
                         {
                             imageUrl: "http://lorempixel.com/100/100/people?1",
@@ -34,9 +32,8 @@ System.register([], function(exports_1, context_1) {
                             totalLikes: 1,
                             isLiked: true
                         }];
-                };
-                return TweetService;
-            }());
+                }
+            }
             exports_1("TweetService", TweetService);
         }
     }

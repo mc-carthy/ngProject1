@@ -5,17 +5,28 @@ System.register([], function(exports_1, context_1) {
     return {
         setters:[],
         execute: function() {
-            UsernameValidators = (function () {
-                function UsernameValidators() {
+            class UsernameValidators {
+                static shouldBeUnique(control) {
+                    return new Promise((resolve, reject) => {
+                        setTimeout(function () {
+                            if (control.value == "Mick") {
+                                resolve({
+                                    shouldBeUnique: true
+                                });
+                            }
+                            else {
+                                resolve(null);
+                            }
+                        }, 1000);
+                    });
                 }
-                UsernameValidators.cannotContainSpace = function (control) {
+                static cannotContainSpace(control) {
                     if (control.value.indexOf(' ') >= 0) {
                         return { cannotContainSpace: true };
                     }
                     return null;
-                };
-                return UsernameValidators;
-            }());
+                }
+            }
             exports_1("UsernameValidators", UsernameValidators);
         }
     }

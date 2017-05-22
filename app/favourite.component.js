@@ -18,33 +18,36 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            FavouriteComponent = (function () {
-                function FavouriteComponent() {
+            let FavouriteComponent = class FavouriteComponent {
+                constructor() {
                     this.isFavourite = false;
                     this.change = new core_1.EventEmitter();
                 }
-                FavouriteComponent.prototype.onClick = function () {
+                onClick() {
                     this.isFavourite = !this.isFavourite;
                     this.change.emit({ newValue: this.isFavourite });
-                };
-                __decorate([
-                    core_1.Input('is-favourite'), 
-                    __metadata('design:type', Object)
-                ], FavouriteComponent.prototype, "isFavourite", void 0);
-                __decorate([
-                    core_1.Output('favourite-change'), 
-                    __metadata('design:type', Object)
-                ], FavouriteComponent.prototype, "change", void 0);
-                FavouriteComponent = __decorate([
-                    core_1.Component({
-                        selector: 'favourite',
-                        templateUrl: "app/favourite.template.html",
-                        styles: ["\n        .glyphicon-star {\n            color: orange;\n        }\n    "]
-                    }), 
-                    __metadata('design:paramtypes', [])
-                ], FavouriteComponent);
-                return FavouriteComponent;
-            }());
+                }
+            };
+            __decorate([
+                core_1.Input('is-favourite'), 
+                __metadata('design:type', Object)
+            ], FavouriteComponent.prototype, "isFavourite", void 0);
+            __decorate([
+                core_1.Output('favourite-change'), 
+                __metadata('design:type', Object)
+            ], FavouriteComponent.prototype, "change", void 0);
+            FavouriteComponent = __decorate([
+                core_1.Component({
+                    selector: 'favourite',
+                    templateUrl: `app/favourite.template.html`,
+                    styles: [`
+        .glyphicon-star {
+            color: orange;
+        }
+    `]
+                }), 
+                __metadata('design:paramtypes', [])
+            ], FavouriteComponent);
             exports_1("FavouriteComponent", FavouriteComponent);
         }
     }

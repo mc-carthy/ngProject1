@@ -21,19 +21,18 @@ System.register(['angular2/core', './signup-form.component'], function(exports_1
                 signup_form_component_1 = signup_form_component_1_1;
             }],
         execute: function() {
-            AppComponent = (function () {
-                function AppComponent() {
-                }
-                AppComponent = __decorate([
-                    core_1.Component({
-                        selector: 'my-app',
-                        template: "\n        <signup-form></signup-form>\n    ",
-                        directives: [signup_form_component_1.SignUpFormComponent]
-                    }), 
-                    __metadata('design:paramtypes', [])
-                ], AppComponent);
-                return AppComponent;
-            }());
+            let AppComponent = class AppComponent {
+            };
+            AppComponent = __decorate([
+                core_1.Component({
+                    selector: 'my-app',
+                    template: `
+        <signup-form></signup-form>
+    `,
+                    directives: [signup_form_component_1.SignUpFormComponent]
+                }), 
+                __metadata('design:paramtypes', [])
+            ], AppComponent);
             exports_1("AppComponent", AppComponent);
         }
     }

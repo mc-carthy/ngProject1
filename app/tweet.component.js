@@ -21,25 +21,36 @@ System.register(['angular2/core', './like.component'], function(exports_1, conte
                 like_component_1 = like_component_1_1;
             }],
         execute: function() {
-            TweetComponent = (function () {
-                function TweetComponent() {
+            let TweetComponent = class TweetComponent {
+                constructor() {
                     console.log(this.data);
                 }
-                __decorate([
-                    core_1.Input(), 
-                    __metadata('design:type', Object)
-                ], TweetComponent.prototype, "data", void 0);
-                TweetComponent = __decorate([
-                    core_1.Component({
-                        selector: 'tweet',
-                        templateUrl: "app/tweet.template.html",
-                        styles: ["\n        .handle {\n            color: #ccc;\n        }\n        \n        .media {\n            margin-bottom: 20px;\n        }\n        \n        .media-object {\n            border-radius: 10px;\n        }\n    "],
-                        directives: [like_component_1.LikeComponent]
-                    }), 
-                    __metadata('design:paramtypes', [])
-                ], TweetComponent);
-                return TweetComponent;
-            }());
+            };
+            __decorate([
+                core_1.Input(), 
+                __metadata('design:type', Object)
+            ], TweetComponent.prototype, "data", void 0);
+            TweetComponent = __decorate([
+                core_1.Component({
+                    selector: 'tweet',
+                    templateUrl: `app/tweet.template.html`,
+                    styles: [`
+        .handle {
+            color: #ccc;
+        }
+        
+        .media {
+            margin-bottom: 20px;
+        }
+        
+        .media-object {
+            border-radius: 10px;
+        }
+    `],
+                    directives: [like_component_1.LikeComponent]
+                }), 
+                __metadata('design:paramtypes', [])
+            ], TweetComponent);
             exports_1("TweetComponent", TweetComponent);
         }
     }
