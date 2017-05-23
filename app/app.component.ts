@@ -3,6 +3,8 @@ import {ControlGroup, FormBuilder} from 'angular2/common'
 import {Observable} from 'rxjs/Observable';
 
 import 'rxjs/add/observable/fromArray';
+import 'rxjs/add/observable/empty';
+import 'rxjs/add/observable/range';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/map';
 
@@ -24,32 +26,20 @@ export class AppComponent
             search: []
         });
 
-        // var search = this.form.find('search');
-        // search.valueChanges
-        //     .debounceTime(400)
-        //     .map(str => (<string>str).replace(' ', '-'))
+        // Observable
+        //     .empty()
         //     .subscribe(x => console.log(x));
 
-        var startDates = [];
-        var startDate = new Date();
+        // Observable
+        //     .range(1, 5)
+        //     .subscribe(x => console.log(x));
 
-        for (var day = -2; day <= 2; day++)
-        {
-            var date = new Date(
-                startDate.getFullYear(),
-                startDate.getMonth(),
-                startDate.getDate() + day
-            );
-
-            startDates.push(date);
-        }
+        // Observable
+        //     .fromArray([1, 2, 3, 4, 5])
+        //     .subscribe(x => console.log(x));
 
         Observable
-            .fromArray(startDates)
-            .map(date => {
-                console.log("Getting deals for date " + date);
-                return [1, 2, 3];
-            })
+            .of([1, 2, 3, 4, 5])
             .subscribe(x => console.log(x));
     }
 }

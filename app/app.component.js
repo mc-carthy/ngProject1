@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/common', 'rxjs/Observable', 'rxjs/add/observable/fromArray', 'rxjs/add/operator/debounceTime', 'rxjs/add/operator/map'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/common', 'rxjs/Observable', 'rxjs/add/observable/fromArray', 'rxjs/add/observable/empty', 'rxjs/add/observable/range', 'rxjs/add/operator/debounceTime', 'rxjs/add/operator/map'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -25,30 +25,26 @@ System.register(['angular2/core', 'angular2/common', 'rxjs/Observable', 'rxjs/ad
             },
             function (_1) {},
             function (_2) {},
-            function (_3) {}],
+            function (_3) {},
+            function (_4) {},
+            function (_5) {}],
         execute: function() {
             let AppComponent = class AppComponent {
                 constructor(fb) {
                     this.form = fb.group({
                         search: []
                     });
-                    // var search = this.form.find('search');
-                    // search.valueChanges
-                    //     .debounceTime(400)
-                    //     .map(str => (<string>str).replace(' ', '-'))
+                    // Observable
+                    //     .empty()
                     //     .subscribe(x => console.log(x));
-                    var startDates = [];
-                    var startDate = new Date();
-                    for (var day = -2; day <= 2; day++) {
-                        var date = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate() + day);
-                        startDates.push(date);
-                    }
+                    // Observable
+                    //     .range(1, 5)
+                    //     .subscribe(x => console.log(x));
+                    // Observable
+                    //     .fromArray([1, 2, 3, 4, 5])
+                    //     .subscribe(x => console.log(x));
                     Observable_1.Observable
-                        .fromArray(startDates)
-                        .map(date => {
-                        console.log("Getting deals for date " + date);
-                        return [1, 2, 3];
-                    })
+                        .of([1, 2, 3, 4, 5])
                         .subscribe(x => console.log(x));
                 }
             };
