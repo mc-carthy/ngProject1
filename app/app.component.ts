@@ -33,14 +33,13 @@ export class AppComponent
             search: []
         });
 
-        // var remoteDataStream = Observable.throw(new Error("Something went wrong"));
-        var remoteDataStream = Observable.of([4, 5, 6]);
+        var remoteDataStream = Observable.of([1, 2, 3]).delay(5000);
 
         remoteDataStream
-            .catch(err => {
-                var localDataStream = Observable.of([1, 2, 3]);
-                return localDataStream;
-            })
-            .subscribe(x => console.log(x));
+            .timeout(1000)
+            .subscribe(
+                x => console.log(x),
+                error => console.log(error)
+            );
     }
 }
