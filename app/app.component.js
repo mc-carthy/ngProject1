@@ -1,4 +1,4 @@
-System.register(['angular2/core', './change-password-form.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/common', 'rxjs/add/operator/debounceTime', 'rxjs/add/operator/map'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,28 +10,41 @@ System.register(['angular2/core', './change-password-form.component'], function(
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, change_password_form_component_1;
+    var core_1, common_1;
     var AppComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (change_password_form_component_1_1) {
-                change_password_form_component_1 = change_password_form_component_1_1;
-            }],
+            function (common_1_1) {
+                common_1 = common_1_1;
+            },
+            function (_1) {},
+            function (_2) {}],
         execute: function() {
             let AppComponent = class AppComponent {
+                constructor(fb) {
+                    this.form = fb.group({
+                        search: []
+                    });
+                    var search = this.form.find('search');
+                    search.valueChanges
+                        .debounceTime(400)
+                        .map(str => str.replace(' ', '-'))
+                        .subscribe(x => console.log(x));
+                }
             };
             AppComponent = __decorate([
                 core_1.Component({
                     selector: 'my-app',
                     template: `
-        <change-password-form></change-password-form>
-    `,
-                    directives: [change_password_form_component_1.ChangePasswordFormComponent]
+        <form [ngFormModel]="form">
+            <input type="text" ngControl="search">
+        </form>
+    `
                 }), 
-                __metadata('design:paramtypes', [])
+                __metadata('design:paramtypes', [common_1.FormBuilder])
             ], AppComponent);
             exports_1("AppComponent", AppComponent);
         }
