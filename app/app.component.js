@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/common', 'rxjs/Rx'], function(exports_1, context_1) {
+System.register(['angular2/core', './post.service', 'angular2/http'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,52 +10,36 @@ System.register(['angular2/core', 'angular2/common', 'rxjs/Rx'], function(export
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, common_1, Rx_1;
+    var core_1, post_service_1, http_1;
     var AppComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (common_1_1) {
-                common_1 = common_1_1;
+            function (post_service_1_1) {
+                post_service_1 = post_service_1_1;
             },
-            function (Rx_1_1) {
-                Rx_1 = Rx_1_1;
+            function (http_1_1) {
+                http_1 = http_1_1;
             }],
         execute: function() {
-            // import 'rxjs/add/observable/fromArray';
-            // import 'rxjs/add/observable/empty';
-            // import 'rxjs/add/observable/range';
-            // import 'rxjs/add/observable/forkJoin';
-            // import 'rxjs/add/observable/interval';
-            // import 'rxjs/add/observable/throw';
-            // import 'rxjs/add/operator/debounceTime';
-            // import 'rxjs/add/operator/delay';
-            // import 'rxjs/add/operator/map';
-            // import 'rxjs/add/operator/mergeMap';
-            // import 'rxjs/add/operator/retry';
             let AppComponent = class AppComponent {
-                constructor(fb) {
-                    this.form = fb.group({
-                        search: []
-                    });
-                    // var observable = Observable.throw(new Error("error"));
-                    var observable = Rx_1.Observable.fromArray([1, 2, 3]);
-                    observable
-                        .subscribe(x => console.log(x), error => console.log(error), () => console.log("completed"));
+                constructor(_postService) {
+                    this._postService = _postService;
+                    this._postService.getPosts()
+                        .subscribe(posts => console.log(posts));
                 }
             };
             AppComponent = __decorate([
                 core_1.Component({
                     selector: 'my-app',
                     template: `
-        <form [ngFormModel]="form">
-            <input type="text" ngControl="search">
-        </form>
-    `
+
+    `,
+                    providers: [post_service_1.PostService, http_1.HTTP_PROVIDERS]
                 }), 
-                __metadata('design:paramtypes', [common_1.FormBuilder])
+                __metadata('design:paramtypes', [post_service_1.PostService])
             ], AppComponent);
             exports_1("AppComponent", AppComponent);
         }

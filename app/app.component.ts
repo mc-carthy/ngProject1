@@ -1,46 +1,20 @@
 import {Component} from 'angular2/core';
-import {ControlGroup, FormBuilder} from 'angular2/common'
-// import {Observable} from 'rxjs/Observable';
-import {Observable} from 'rxjs/Rx';
-
-// import 'rxjs/add/observable/fromArray';
-// import 'rxjs/add/observable/empty';
-// import 'rxjs/add/observable/range';
-// import 'rxjs/add/observable/forkJoin';
-// import 'rxjs/add/observable/interval';
-// import 'rxjs/add/observable/throw';
-// import 'rxjs/add/operator/debounceTime';
-// import 'rxjs/add/operator/delay';
-// import 'rxjs/add/operator/map';
-// import 'rxjs/add/operator/mergeMap';
-// import 'rxjs/add/operator/retry';
+import {PostService} from './post.service';
+import {HTTP_PROVIDERS} from 'angular2/http';
 
 @Component({
     selector: 'my-app',
     template: `
-        <form [ngFormModel]="form">
-            <input type="text" ngControl="search">
-        </form>
-    `
+
+    `,
+    providers: [PostService, HTTP_PROVIDERS]
 })
 
 export class AppComponent
 {
-    form: ControlGroup;
-
-    constructor(fb: FormBuilder) {
-        this.form = fb.group({
-            search: []
-        });
-
-        // var observable = Observable.throw(new Error("error"));
-        var observable = Observable.fromArray([1, 2, 3]);
-
-        observable
-            .subscribe(
-                x => console.log(x),
-                error => console.log(error),
-                () => console.log("completed")
-            );
+    constructor(private _postService: PostService)
+    {
+        this._postService.getPosts()
+            .subscribe(posts => console.log(posts))
     }
 }
