@@ -1,4 +1,4 @@
-System.register(['angular2/core', './post.service', 'angular2/http'], function(exports_1, context_1) {
+System.register(['angular2/core', './github-profile.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,44 +10,28 @@ System.register(['angular2/core', './post.service', 'angular2/http'], function(e
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, post_service_1, http_1;
+    var core_1, github_profile_component_1;
     var AppComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (post_service_1_1) {
-                post_service_1 = post_service_1_1;
-            },
-            function (http_1_1) {
-                http_1 = http_1_1;
+            function (github_profile_component_1_1) {
+                github_profile_component_1 = github_profile_component_1_1;
             }],
         execute: function() {
             let AppComponent = class AppComponent {
-                constructor(_postService) {
-                    this._postService = _postService;
-                    this.isLoading = true;
-                }
-                ngOnInit() {
-                    this._postService.getPosts()
-                        .then(posts => {
-                        this.isLoading = false;
-                        console.log(posts);
-                    });
-                }
             };
             AppComponent = __decorate([
                 core_1.Component({
                     selector: 'my-app',
                     template: `
-        <div *ngIf="isLoading">
-            <i class="fa fa-spinner fa-spin fa-3x"></i>
-        </div>
+        <github-profile></github-profile>
     `,
-                    providers: [post_service_1.PostService, http_1.HTTP_PROVIDERS]
+                    directives: [github_profile_component_1.GithubProfileComponent]
                 }), 
-                __metadata('design:paramtypes', [post_service_1.PostService])
+                __metadata('design:paramtypes', [])
             ], AppComponent);
             exports_1("AppComponent", AppComponent);
         }
