@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/common', 'rxjs/Observable', 'rxjs/add/observable/fromArray', 'rxjs/add/observable/empty', 'rxjs/add/observable/range', 'rxjs/add/operator/debounceTime', 'rxjs/add/operator/map'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/common', 'rxjs/Observable', 'rxjs/add/observable/fromArray', 'rxjs/add/observable/empty', 'rxjs/add/observable/range', 'rxjs/add/observable/interval', 'rxjs/add/operator/debounceTime', 'rxjs/add/operator/map', 'rxjs/add/operator/mergeMap'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -27,25 +27,22 @@ System.register(['angular2/core', 'angular2/common', 'rxjs/Observable', 'rxjs/ad
             function (_2) {},
             function (_3) {},
             function (_4) {},
-            function (_5) {}],
+            function (_5) {},
+            function (_6) {},
+            function (_7) {}],
         execute: function() {
             let AppComponent = class AppComponent {
                 constructor(fb) {
                     this.form = fb.group({
                         search: []
                     });
-                    // Observable
-                    //     .empty()
-                    //     .subscribe(x => console.log(x));
-                    // Observable
-                    //     .range(1, 5)
-                    //     .subscribe(x => console.log(x));
-                    // Observable
-                    //     .fromArray([1, 2, 3, 4, 5])
-                    //     .subscribe(x => console.log(x));
-                    Observable_1.Observable
-                        .of([1, 2, 3, 4, 5])
-                        .subscribe(x => console.log(x));
+                    var observable = Observable_1.Observable.interval(1000);
+                    observable
+                        .flatMap(x => {
+                        console.log("calling the server to get the latest news");
+                        return [1, 2, 3];
+                    })
+                        .subscribe(news => console.log(news));
                 }
             };
             AppComponent = __decorate([

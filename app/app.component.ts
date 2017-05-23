@@ -5,8 +5,10 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/fromArray';
 import 'rxjs/add/observable/empty';
 import 'rxjs/add/observable/range';
+import 'rxjs/add/observable/interval';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
 
 @Component({
     selector: 'my-app',
@@ -26,20 +28,12 @@ export class AppComponent
             search: []
         });
 
-        // Observable
-        //     .empty()
-        //     .subscribe(x => console.log(x));
-
-        // Observable
-        //     .range(1, 5)
-        //     .subscribe(x => console.log(x));
-
-        // Observable
-        //     .fromArray([1, 2, 3, 4, 5])
-        //     .subscribe(x => console.log(x));
-
-        Observable
-            .of([1, 2, 3, 4, 5])
-            .subscribe(x => console.log(x));
+        var observable = Observable.interval(1000);
+        observable
+            .flatMap(x => {
+                console.log("calling the server to get the latest news");
+                return [1, 2, 3];
+            })
+            .subscribe(news => console.log(news));
     }
 }
