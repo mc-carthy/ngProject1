@@ -31,7 +31,7 @@ System.register(['angular2/core', './post.service', 'angular2/http'], function(e
                 }
                 ngOnInit() {
                     this._postService.getPosts()
-                        .subscribe(posts => {
+                        .then(posts => {
                         this.isLoading = false;
                         console.log(posts);
                     });
