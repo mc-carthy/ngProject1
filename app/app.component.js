@@ -40,23 +40,14 @@ System.register(['angular2/core', 'angular2/common', 'rxjs/Rx'], function(export
                     this.form = fb.group({
                         search: []
                     });
-                    // var observable = Observable.throw(new Error("Something failed."));
-                    // observable
-                    //     .subscribe(
-                    //         x => console.log(x),
-                    //         error => console.error(error)
-                    //     );
-                    var counter = 0;
-                    var ajaxCall = Rx_1.Observable.of('url')
-                        .flatMap(() => {
-                        if (++counter < 2) {
-                            return Rx_1.Observable.throw(new Error("Request failed"));
-                        }
-                        return Rx_1.Observable.of([1, 2, 3]);
-                    });
-                    ajaxCall
-                        .retry(3)
-                        .subscribe(x => console.log(x), error => console.log(error));
+                    // var remoteDataStream = Observable.throw(new Error("Something went wrong"));
+                    var remoteDataStream = Rx_1.Observable.of([4, 5, 6]);
+                    remoteDataStream
+                        .catch(err => {
+                        var localDataStream = Rx_1.Observable.of([1, 2, 3]);
+                        return localDataStream;
+                    })
+                        .subscribe(x => console.log(x));
                 }
             };
             AppComponent = __decorate([

@@ -33,30 +33,14 @@ export class AppComponent
             search: []
         });
 
-        // var observable = Observable.throw(new Error("Something failed."));
+        // var remoteDataStream = Observable.throw(new Error("Something went wrong"));
+        var remoteDataStream = Observable.of([4, 5, 6]);
 
-        // observable
-        //     .subscribe(
-        //         x => console.log(x),
-        //         error => console.error(error)
-        //     );
-
-        var counter = 0;
-
-        var ajaxCall = Observable.of('url')
-            .flatMap(() => {
-                if (++counter < 2)
-                {
-                    return Observable.throw(new Error("Request failed"));
-                }
-                return Observable.of([1, 2, 3]);
-            });
-
-        ajaxCall
-            .retry(3)
-            .subscribe(
-                x => console.log(x),
-                error => console.log(error)
-            );
+        remoteDataStream
+            .catch(err => {
+                var localDataStream = Observable.of([1, 2, 3]);
+                return localDataStream;
+            })
+            .subscribe(x => console.log(x));
     }
 }
