@@ -15,7 +15,11 @@ export class AppComponent implements OnInit
 {
     constructor(private _postService: PostService)
     {
-
+        // this._postService.createPost({
+        //     userId: 1,
+        //     title: "Test Title",
+        //     body: "This post is a test"
+        // });
     }
 
     ngOnInit()
