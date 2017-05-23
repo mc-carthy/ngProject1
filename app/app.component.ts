@@ -5,8 +5,10 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/fromArray';
 import 'rxjs/add/observable/empty';
 import 'rxjs/add/observable/range';
+import 'rxjs/add/observable/forkJoin';
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
@@ -28,12 +30,19 @@ export class AppComponent
             search: []
         });
 
-        var observable = Observable.interval(1000);
-        observable
-            .flatMap(x => {
-                console.log("calling the server to get the latest news");
-                return [1, 2, 3];
-            })
-            .subscribe(news => console.log(news));
+        var userStream = Observable.of({
+            userId: 1, userName: 'Mick'
+        }).delay(2000);
+
+        var tweetsStream = Observable.of(
+            [1, 2, 3]
+        ).delay(1500);
+
+        Observable
+            .forkJoin(userStream, tweetsStream)
+            .map(joined => new Object({
+                user: joined[0], tweets: joined[1]
+            }))
+            .subscribe(result => console.log(result));
     }
 }

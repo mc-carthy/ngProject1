@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/common', 'rxjs/Observable', 'rxjs/add/observable/fromArray', 'rxjs/add/observable/empty', 'rxjs/add/observable/range', 'rxjs/add/observable/interval', 'rxjs/add/operator/debounceTime', 'rxjs/add/operator/map', 'rxjs/add/operator/mergeMap'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/common', 'rxjs/Observable', 'rxjs/add/observable/fromArray', 'rxjs/add/observable/empty', 'rxjs/add/observable/range', 'rxjs/add/observable/forkJoin', 'rxjs/add/observable/interval', 'rxjs/add/operator/debounceTime', 'rxjs/add/operator/delay', 'rxjs/add/operator/map', 'rxjs/add/operator/mergeMap'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -29,20 +29,25 @@ System.register(['angular2/core', 'angular2/common', 'rxjs/Observable', 'rxjs/ad
             function (_4) {},
             function (_5) {},
             function (_6) {},
-            function (_7) {}],
+            function (_7) {},
+            function (_8) {},
+            function (_9) {}],
         execute: function() {
             let AppComponent = class AppComponent {
                 constructor(fb) {
                     this.form = fb.group({
                         search: []
                     });
-                    var observable = Observable_1.Observable.interval(1000);
-                    observable
-                        .flatMap(x => {
-                        console.log("calling the server to get the latest news");
-                        return [1, 2, 3];
-                    })
-                        .subscribe(news => console.log(news));
+                    var userStream = Observable_1.Observable.of({
+                        userId: 1, userName: 'Mick'
+                    }).delay(2000);
+                    var tweetsStream = Observable_1.Observable.of([1, 2, 3]).delay(1500);
+                    Observable_1.Observable
+                        .forkJoin(userStream, tweetsStream)
+                        .map(joined => new Object({
+                        user: joined[0], tweets: joined[1]
+                    }))
+                        .subscribe(result => console.log(result));
                 }
             };
             AppComponent = __decorate([
