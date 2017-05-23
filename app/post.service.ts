@@ -3,6 +3,8 @@ import 'rxjs/add/operator/map'
 
 export class PostService {
 
+    private url = "https://jsonplaceholder.typicode.com/posts";
+
     constructor(private _http: Http)
     {
 
@@ -10,7 +12,13 @@ export class PostService {
 
     getPost()
     {
-        return this._http.get("https://jsonplaceholder.typicode.com/posts")
+        return this._http.get(this.url)
         .map(res => res.json);
+    }
+
+    createPost(post)
+    {
+        return this._http.post(this.url, JSON.stringify(post))
+            .map(res => res.json);
     }
 }
