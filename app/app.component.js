@@ -40,10 +40,10 @@ System.register(['angular2/core', 'angular2/common', 'rxjs/Rx'], function(export
                     this.form = fb.group({
                         search: []
                     });
-                    var remoteDataStream = Rx_1.Observable.of([1, 2, 3]).delay(5000);
-                    remoteDataStream
-                        .timeout(1000)
-                        .subscribe(x => console.log(x), error => console.log(error));
+                    // var observable = Observable.throw(new Error("error"));
+                    var observable = Rx_1.Observable.fromArray([1, 2, 3]);
+                    observable
+                        .subscribe(x => console.log(x), error => console.log(error), () => console.log("completed"));
                 }
             };
             AppComponent = __decorate([
