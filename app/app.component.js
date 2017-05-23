@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/common', 'rxjs/Observable', 'rxjs/add/observable/fromArray', 'rxjs/add/observable/empty', 'rxjs/add/observable/range', 'rxjs/add/observable/forkJoin', 'rxjs/add/observable/interval', 'rxjs/add/operator/debounceTime', 'rxjs/add/operator/delay', 'rxjs/add/operator/map', 'rxjs/add/operator/mergeMap'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/common', 'rxjs/Rx'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/common', 'rxjs/Observable', 'rxjs/ad
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, common_1, Observable_1;
+    var core_1, common_1, Rx_1;
     var AppComponent;
     return {
         setters:[
@@ -20,34 +20,43 @@ System.register(['angular2/core', 'angular2/common', 'rxjs/Observable', 'rxjs/ad
             function (common_1_1) {
                 common_1 = common_1_1;
             },
-            function (Observable_1_1) {
-                Observable_1 = Observable_1_1;
-            },
-            function (_1) {},
-            function (_2) {},
-            function (_3) {},
-            function (_4) {},
-            function (_5) {},
-            function (_6) {},
-            function (_7) {},
-            function (_8) {},
-            function (_9) {}],
+            function (Rx_1_1) {
+                Rx_1 = Rx_1_1;
+            }],
         execute: function() {
+            // import 'rxjs/add/observable/fromArray';
+            // import 'rxjs/add/observable/empty';
+            // import 'rxjs/add/observable/range';
+            // import 'rxjs/add/observable/forkJoin';
+            // import 'rxjs/add/observable/interval';
+            // import 'rxjs/add/observable/throw';
+            // import 'rxjs/add/operator/debounceTime';
+            // import 'rxjs/add/operator/delay';
+            // import 'rxjs/add/operator/map';
+            // import 'rxjs/add/operator/mergeMap';
+            // import 'rxjs/add/operator/retry';
             let AppComponent = class AppComponent {
                 constructor(fb) {
                     this.form = fb.group({
                         search: []
                     });
-                    var userStream = Observable_1.Observable.of({
-                        userId: 1, userName: 'Mick'
-                    }).delay(2000);
-                    var tweetsStream = Observable_1.Observable.of([1, 2, 3]).delay(1500);
-                    Observable_1.Observable
-                        .forkJoin(userStream, tweetsStream)
-                        .map(joined => new Object({
-                        user: joined[0], tweets: joined[1]
-                    }))
-                        .subscribe(result => console.log(result));
+                    // var observable = Observable.throw(new Error("Something failed."));
+                    // observable
+                    //     .subscribe(
+                    //         x => console.log(x),
+                    //         error => console.error(error)
+                    //     );
+                    var counter = 0;
+                    var ajaxCall = Rx_1.Observable.of('url')
+                        .flatMap(() => {
+                        if (++counter < 2) {
+                            return Rx_1.Observable.throw(new Error("Request failed"));
+                        }
+                        return Rx_1.Observable.of([1, 2, 3]);
+                    });
+                    ajaxCall
+                        .retry(3)
+                        .subscribe(x => console.log(x), error => console.log(error));
                 }
             };
             AppComponent = __decorate([
