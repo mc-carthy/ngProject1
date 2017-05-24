@@ -29,6 +29,10 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                     console.log(form);
                     this._router.navigate(['Albums']);
                 }
+                routerCanDeactivate(next, previous) {
+                    // if (this.form.dirty)
+                    return confirm("Are you sure");
+                }
             };
             ContactComponent = __decorate([
                 core_1.Component({
