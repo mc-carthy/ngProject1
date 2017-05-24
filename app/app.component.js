@@ -37,7 +37,8 @@ System.register(['angular2/core', 'angular2/router', './albums.component', './co
                 ]),
                 core_1.Component({
                     selector: 'my-app',
-                    templateUrl: '/app/app.component.html'
+                    templateUrl: '/app/app.component.html',
+                    directives: [router_1.RouterOutlet]
                 }), 
                 __metadata('design:paramtypes', [])
             ], AppComponent);
