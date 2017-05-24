@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/http', './photo.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/http', './photo.service', 'angular2/router'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/http', './photo.service'], function(
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1, photo_service_1;
+    var core_1, http_1, photo_service_1, router_1;
     var AlbumComponent;
     return {
         setters:[
@@ -22,15 +22,19 @@ System.register(['angular2/core', 'angular2/http', './photo.service'], function(
             },
             function (photo_service_1_1) {
                 photo_service_1 = photo_service_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
             }],
         execute: function() {
             let AlbumComponent = class AlbumComponent {
-                constructor(_photoService) {
+                constructor(_photoService, _routeParams) {
                     this._photoService = _photoService;
+                    this._routeParams = _routeParams;
                     this.isLoading = true;
                 }
                 ngOnInit() {
-                    this._photoService.getPhotos(1)
+                    this._photoService.getPhotos(this._routeParams.get("id"))
                         .subscribe(photos => {
                         this.isLoading = false;
                         this.photos = photos;
@@ -50,7 +54,7 @@ System.register(['angular2/core', 'angular2/http', './photo.service'], function(
     `,
                     providers: [photo_service_1.PhotoService, http_1.HTTP_PROVIDERS]
                 }), 
-                __metadata('design:paramtypes', [photo_service_1.PhotoService])
+                __metadata('design:paramtypes', [photo_service_1.PhotoService, router_1.RouteParams])
             ], AlbumComponent);
             exports_1("AlbumComponent", AlbumComponent);
         }
