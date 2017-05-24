@@ -1,15 +1,8 @@
 import {Component} from 'angular2/core';
-import {GithubProfileComponent} from './github-profile.component';
 
 @Component({
     selector: 'my-app',
-    template: `
-        <github-profile></github-profile>
-    `,
-    directives: [GithubProfileComponent]
+    templateUrl: '/app/app.component.html'
 })
-
-export class AppComponent
-{
-
+export class AppComponent {
 }
