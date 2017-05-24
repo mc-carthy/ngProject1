@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './home.component', './archives.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,8 +10,8 @@ System.register(['angular2/core', 'angular2/router', './home.component', './arch
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, home_component_1, archives_component_1;
-    var AppComponent;
+    var core_1, router_1;
+    var HomeComponent;
     return {
         setters:[
             function (core_1_1) {
@@ -19,33 +19,35 @@ System.register(['angular2/core', 'angular2/router', './home.component', './arch
             },
             function (router_1_1) {
                 router_1 = router_1_1;
-            },
-            function (home_component_1_1) {
-                home_component_1 = home_component_1_1;
-            },
-            function (archives_component_1_1) {
-                archives_component_1 = archives_component_1_1;
             }],
         execute: function() {
-            let AppComponent = class AppComponent {
+            let HomeComponent = class HomeComponent {
+                constructor() {
+                    this.archives = [
+                        { year: 2016, month: 1 },
+                        { year: 2016, month: 2 },
+                        { year: 2016, month: 3 },
+                    ];
+                }
             };
-            AppComponent = __decorate([
-                router_1.RouteConfig([
-                    { path: '/', name: 'Home', component: home_component_1.HomeComponent },
-                    { path: '/archives/:year/:month', name: 'Archives', component: archives_component_1.ArchivesComponent },
-                    { path: '/*other', name: 'Other', redirectTo: ['Home'] }
-                ]),
+            HomeComponent = __decorate([
                 core_1.Component({
-                    selector: 'my-app',
                     template: `
-        <router-outlet></router-outlet>
+        <h1>Home Page</h1>
+        <ul>
+            <li *ngFor="#archive of archives">
+                <a [routerLink]="['Archives', { year: archive.year, month: archive.month }]">
+                    {{ archive.year }}/{{ archive.month }}
+                </a>
+            </li>
+        </ul>
     `,
-                    directives: [router_1.ROUTER_DIRECTIVES]
+                    directives: [router_1.RouterLink]
                 }), 
                 __metadata('design:paramtypes', [])
-            ], AppComponent);
-            exports_1("AppComponent", AppComponent);
+            ], HomeComponent);
+            exports_1("HomeComponent", HomeComponent);
         }
     }
 });
-//# sourceMappingURL=app.component.js.map
+//# sourceMappingURL=home.component.js.map
