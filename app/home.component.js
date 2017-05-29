@@ -22,25 +22,11 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
             }],
         execute: function() {
             let HomeComponent = class HomeComponent {
-                constructor() {
-                    this.archives = [
-                        { year: 2016, month: 1 },
-                        { year: 2016, month: 2 },
-                        { year: 2016, month: 3 },
-                    ];
-                }
             };
             HomeComponent = __decorate([
                 core_1.Component({
                     template: `
         <h1>Home Page</h1>
-        <ul>
-            <li *ngFor="#archive of archives">
-                <a [routerLink]="['Archives', { year: archive.year, month: archive.month }]">
-                    {{ archive.year }}/{{ archive.month }}
-                </a>
-            </li>
-        </ul>
     `,
                     directives: [router_1.RouterLink]
                 }), 
