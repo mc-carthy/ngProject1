@@ -1,4 +1,4 @@
-System.register(['angular2/core', './user.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/http', 'rxjs/add/operator/map'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,35 +10,34 @@ System.register(['angular2/core', './user.service'], function(exports_1, context
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, user_service_1;
-    var UsersComponent;
+    var core_1, http_1;
+    var UserService;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (user_service_1_1) {
-                user_service_1 = user_service_1_1;
-            }],
+            function (http_1_1) {
+                http_1 = http_1_1;
+            },
+            function (_1) {}],
         execute: function() {
-            let UsersComponent = class UsersComponent {
-                constructor(_service) {
-                    this._service = _service;
+            let UserService = class UserService {
+                constructor(_http) {
+                    this._http = _http;
+                    this._url = "https://jsonplaceholder.typicode.com/users";
                 }
-                ngOnInit() {
-                    this._service.getUsers()
-                        .subscribe(users => this.users = users);
+                getUsers() {
+                    return this._http.get(this._url)
+                        .map(res => res.json());
                 }
             };
-            UsersComponent = __decorate([
-                core_1.Component({
-                    templateUrl: 'app/users.component.html',
-                    providers: [user_service_1.UserService]
-                }), 
-                __metadata('design:paramtypes', [user_service_1.UserService])
-            ], UsersComponent);
-            exports_1("UsersComponent", UsersComponent);
+            UserService = __decorate([
+                core_1.Injectable(), 
+                __metadata('design:paramtypes', [http_1.Http])
+            ], UserService);
+            exports_1("UserService", UserService);
         }
     }
 });
-//# sourceMappingURL=users.component.js.map
+//# sourceMappingURL=user.service.js.map
