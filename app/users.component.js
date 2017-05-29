@@ -32,6 +32,17 @@ System.register(['angular2/core', 'angular2/router', './user.service'], function
                     this._service.getUsers()
                         .subscribe(users => this.users = users);
                 }
+                deleteUser(user) {
+                    if (confirm("Are you sure you want to delete " + user.name + "?")) {
+                        var index = this.users.indexOf(user);
+                        this.users.splice(index, 1);
+                        this._service.deleteUser(user.id)
+                            .subscribe(null, err => {
+                            alert("Could not delete the selected user.");
+                            this.users.splice(index, 0, user);
+                        });
+                    }
+                }
             };
             UsersComponent = __decorate([
                 core_1.Component({
