@@ -72,8 +72,14 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', './basic
                     return true;
                 }
                 save() {
-                    this._userService.addUser(this.form.value)
-                        .subscribe(x => {
+                    var result;
+                    if (this.user.id) {
+                        result = this._userService.updateUser(this.user);
+                    }
+                    else {
+                        result = this._userService.addUser(this.user);
+                    }
+                    result.subscribe(x => {
                         this._router.navigate(['Users']);
                     });
                     this.isSaving = true;
