@@ -1,4 +1,4 @@
-System.register(['angular2/core', './navbar.component'], function(exports_1, context_1) {
+System.register(['angular2/core'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,31 +10,25 @@ System.register(['angular2/core', './navbar.component'], function(exports_1, con
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, navbar_component_1;
-    var AppComponent;
+    var core_1;
+    var NavBarComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
-            },
-            function (navbar_component_1_1) {
-                navbar_component_1 = navbar_component_1_1;
             }],
         execute: function() {
-            let AppComponent = class AppComponent {
+            let NavBarComponent = class NavBarComponent {
             };
-            AppComponent = __decorate([
+            NavBarComponent = __decorate([
                 core_1.Component({
-                    selector: 'my-app',
-                    template: `
-        <navbar></navbar>
-    `,
-                    directives: [navbar_component_1.NavBarComponent]
+                    selector: 'navbar',
+                    templateUrl: 'app/navbar.component.html'
                 }), 
                 __metadata('design:paramtypes', [])
-            ], AppComponent);
-            exports_1("AppComponent", AppComponent);
+            ], NavBarComponent);
+            exports_1("NavBarComponent", NavBarComponent);
         }
     }
 });
-//# sourceMappingURL=app.component.js.map
+//# sourceMappingURL=navbar.component.js.map
