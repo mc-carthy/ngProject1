@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './user.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/common'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,39 +10,40 @@ System.register(['angular2/core', 'angular2/router', './user.service'], function
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, user_service_1;
-    var UsersComponent;
+    var core_1, common_1;
+    var UserFormComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (router_1_1) {
-                router_1 = router_1_1;
-            },
-            function (user_service_1_1) {
-                user_service_1 = user_service_1_1;
+            function (common_1_1) {
+                common_1 = common_1_1;
             }],
         execute: function() {
-            let UsersComponent = class UsersComponent {
-                constructor(_service) {
-                    this._service = _service;
-                }
-                ngOnInit() {
-                    this._service.getUsers()
-                        .subscribe(users => this.users = users);
+            let UserFormComponent = class UserFormComponent {
+                constructor(fb) {
+                    this.form = fb.group({
+                        name: [],
+                        email: [],
+                        phone: [],
+                        address: fb.group({
+                            street: [],
+                            suite: [],
+                            city: [],
+                            postcode: []
+                        })
+                    });
                 }
             };
-            UsersComponent = __decorate([
+            UserFormComponent = __decorate([
                 core_1.Component({
-                    templateUrl: 'app/users.component.html',
-                    providers: [user_service_1.UserService],
-                    directives: [router_1.RouterLink]
+                    templateUrl: 'app/user-form.component.html'
                 }), 
-                __metadata('design:paramtypes', [user_service_1.UserService])
-            ], UsersComponent);
-            exports_1("UsersComponent", UsersComponent);
+                __metadata('design:paramtypes', [common_1.FormBuilder])
+            ], UserFormComponent);
+            exports_1("UserFormComponent", UserFormComponent);
         }
     }
 });
-//# sourceMappingURL=users.component.js.map
+//# sourceMappingURL=user-form.component.js.map
