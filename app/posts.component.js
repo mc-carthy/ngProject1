@@ -36,8 +36,9 @@ System.register(['angular2/core', './post.service', './spinner.component'], func
                 }
                 select(post) {
                     this.currentPost = post;
+                    this.commentsLoading = true;
                     this._postService.getComments(post.id)
-                        .subscribe(comments => this.currentPost.comments = comments);
+                        .subscribe(comments => this.currentPost.comments = comments, null, () => this.commentsLoading = false);
                 }
             };
             PostsComponent = __decorate([
