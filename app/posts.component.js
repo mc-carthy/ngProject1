@@ -34,10 +34,24 @@ System.register(['angular2/core', './post.service', './spinner.component'], func
                     this._postService.getPosts()
                         .subscribe(posts => this.posts = posts, null, () => this.isLoading = false);
                 }
+                select(post) {
+                    this.currentPost = post;
+                }
             };
             PostsComponent = __decorate([
                 core_1.Component({
                     templateUrl: 'app/posts.component.html',
+                    styles: [`
+        .posts li { cursor: default; }
+        .posts li:hover { background: #ecf0f1; } 
+        .list-group-item.active, 
+        .list-group-item.active:hover, 
+        .list-group-item.active:focus { 
+            background-color: #ecf0f1;
+            border-color: #ecf0f1; 
+            color: #2c3e50;
+        }
+    `],
                     providers: [post_service_1.PostService],
                     directives: [spinner_component_1.SpinnerComponent]
                 }), 
