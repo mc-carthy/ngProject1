@@ -28,11 +28,11 @@ System.register(['angular2/core', './post.service', './spinner.component'], func
                 constructor(_postService) {
                     this._postService = _postService;
                     this.posts = [];
-                    this.isLoading = true;
+                    this.postsLoading = true;
                 }
                 ngOnInit() {
                     this._postService.getPosts()
-                        .subscribe(posts => this.posts = posts, null, () => this.isLoading = false);
+                        .subscribe(posts => this.posts = posts, null, () => this.postsLoading = false);
                 }
                 select(post) {
                     this.currentPost = post;
