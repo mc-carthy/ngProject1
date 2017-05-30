@@ -7,7 +7,7 @@ System.register(["angular2/core"], function (exports_1, context_1) {
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, NotFoundComponent;
+    var core_1, BootstrapPanel;
     return {
         setters: [
             function (core_1_1) {
@@ -15,17 +15,25 @@ System.register(["angular2/core"], function (exports_1, context_1) {
             }
         ],
         execute: function () {
-            NotFoundComponent = class NotFoundComponent {
+            BootstrapPanel = class BootstrapPanel {
             };
-            NotFoundComponent = __decorate([
+            BootstrapPanel = __decorate([
                 core_1.Component({
+                    selector: 'bs-panel',
                     template: `
-        <h1>Not Found</h1>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <ng-content select=".heading"></ng-content>
+            </div>
+            <div class="panel-body">
+                <ng-content select=".body"></ng-content>
+            </div>
+        </div>
     `
                 })
-            ], NotFoundComponent);
-            exports_1("NotFoundComponent", NotFoundComponent);
+            ], BootstrapPanel);
+            exports_1("BootstrapPanel", BootstrapPanel);
         }
     };
 });
-//# sourceMappingURL=not-found.component.js.map
+//# sourceMappingURL=bootstrap.panel.component.js.map

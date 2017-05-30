@@ -1,4 +1,4 @@
-System.register(["angular2/core", "angular2/router"], function (exports_1, context_1) {
+System.register(["angular2/core"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,36 +10,38 @@ System.register(["angular2/core", "angular2/router"], function (exports_1, conte
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, router_1, NavBarComponent;
+    var core_1, AutoGrowDirective;
     return {
         setters: [
             function (core_1_1) {
                 core_1 = core_1_1;
-            },
-            function (router_1_1) {
-                router_1 = router_1_1;
             }
         ],
         execute: function () {
-            NavBarComponent = class NavBarComponent {
-                constructor(_router) {
-                    this._router = _router;
+            AutoGrowDirective = class AutoGrowDirective {
+                constructor(el, ren) {
+                    this.el = el;
+                    this.ren = ren;
                 }
-                isCurrentRoute(route) {
-                    var instruction = this._router.generate(route);
-                    return this._router.isRouteActive(instruction);
+                onFocus() {
+                    this.ren.setElementStyle(this.el.nativeElement, 'width', '200');
+                }
+                onBlur() {
+                    this.ren.setElementStyle(this.el.nativeElement, 'width', '120');
                 }
             };
-            NavBarComponent = __decorate([
-                core_1.Component({
-                    selector: 'navbar',
-                    templateUrl: 'app/navbar.component.html',
-                    directives: [router_1.ROUTER_DIRECTIVES]
+            AutoGrowDirective = __decorate([
+                core_1.Directive({
+                    selector: '[autoGrow]',
+                    host: {
+                        '(focus)': 'onFocus()',
+                        '(blur)': 'onBlur()'
+                    }
                 }),
-                __metadata("design:paramtypes", [router_1.Router])
-            ], NavBarComponent);
-            exports_1("NavBarComponent", NavBarComponent);
+                __metadata("design:paramtypes", [core_1.ElementRef, core_1.Renderer])
+            ], AutoGrowDirective);
+            exports_1("AutoGrowDirective", AutoGrowDirective);
         }
     };
 });
-//# sourceMappingURL=navbar.component.js.map
+//# sourceMappingURL=auto-grow.directive.js.map

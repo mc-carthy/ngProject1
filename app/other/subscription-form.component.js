@@ -7,7 +7,7 @@ System.register(["angular2/core"], function (exports_1, context_1) {
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, NotFoundComponent;
+    var core_1, SubscriptionFormComponent;
     return {
         setters: [
             function (core_1_1) {
@@ -15,17 +15,26 @@ System.register(["angular2/core"], function (exports_1, context_1) {
             }
         ],
         execute: function () {
-            NotFoundComponent = class NotFoundComponent {
+            SubscriptionFormComponent = class SubscriptionFormComponent {
+                constructor() {
+                    this.frequencies = [
+                        { id: 1, label: 'Daily' },
+                        { id: 2, label: 'Weekly' },
+                        { id: 3, label: 'Monthly' }
+                    ];
+                }
+                onSubscribe(form) {
+                    console.log(form);
+                }
             };
-            NotFoundComponent = __decorate([
+            SubscriptionFormComponent = __decorate([
                 core_1.Component({
-                    template: `
-        <h1>Not Found</h1>
-    `
+                    selector: 'subscription-form',
+                    templateUrl: 'app/subscription-form.component.html'
                 })
-            ], NotFoundComponent);
-            exports_1("NotFoundComponent", NotFoundComponent);
+            ], SubscriptionFormComponent);
+            exports_1("SubscriptionFormComponent", SubscriptionFormComponent);
         }
     };
 });
-//# sourceMappingURL=not-found.component.js.map
+//# sourceMappingURL=subscription-form.component.js.map

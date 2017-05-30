@@ -6,8 +6,11 @@ System.register(["angular2/core"], function (exports_1, context_1) {
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
+    var __metadata = (this && this.__metadata) || function (k, v) {
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+    };
     var __moduleName = context_1 && context_1.id;
-    var core_1, NotFoundComponent;
+    var core_1, SpinnerComponent;
     return {
         setters: [
             function (core_1_1) {
@@ -15,17 +18,25 @@ System.register(["angular2/core"], function (exports_1, context_1) {
             }
         ],
         execute: function () {
-            NotFoundComponent = class NotFoundComponent {
+            SpinnerComponent = class SpinnerComponent {
+                constructor() {
+                    this.visible = true;
+                }
             };
-            NotFoundComponent = __decorate([
+            __decorate([
+                core_1.Input(),
+                __metadata("design:type", Object)
+            ], SpinnerComponent.prototype, "visible", void 0);
+            SpinnerComponent = __decorate([
                 core_1.Component({
+                    selector: 'spinner',
                     template: `
-        <h1>Not Found</h1>
+        <i *ngIf="visible" class="fa fa-spinner fa-spin fa-3x"></i>
     `
                 })
-            ], NotFoundComponent);
-            exports_1("NotFoundComponent", NotFoundComponent);
+            ], SpinnerComponent);
+            exports_1("SpinnerComponent", SpinnerComponent);
         }
     };
 });
-//# sourceMappingURL=not-found.component.js.map
+//# sourceMappingURL=spinner.component.js.map

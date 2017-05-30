@@ -6,8 +6,11 @@ System.register(["angular2/core", "angular2/router"], function (exports_1, conte
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
+    var __metadata = (this && this.__metadata) || function (k, v) {
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+    };
     var __moduleName = context_1 && context_1.id;
-    var core_1, router_1, HomeComponent;
+    var core_1, router_1, ContactComponent;
     return {
         setters: [
             function (core_1_1) {
@@ -18,18 +21,27 @@ System.register(["angular2/core", "angular2/router"], function (exports_1, conte
             }
         ],
         execute: function () {
-            HomeComponent = class HomeComponent {
+            ContactComponent = class ContactComponent {
+                constructor(_router) {
+                    this._router = _router;
+                }
+                onSubmit(form) {
+                    console.log(form);
+                    this._router.navigate(['Albums']);
+                }
+                routerCanDeactivate(next, previous) {
+                    // if (this.form.dirty)
+                    return confirm("Are you sure");
+                }
             };
-            HomeComponent = __decorate([
+            ContactComponent = __decorate([
                 core_1.Component({
-                    template: `
-        <h1>Home Page</h1>
-    `,
-                    directives: [router_1.RouterLink]
-                })
-            ], HomeComponent);
-            exports_1("HomeComponent", HomeComponent);
+                    templateUrl: '/app/contact.component.html'
+                }),
+                __metadata("design:paramtypes", [router_1.Router])
+            ], ContactComponent);
+            exports_1("ContactComponent", ContactComponent);
         }
     };
 });
-//# sourceMappingURL=home.component.js.map
+//# sourceMappingURL=contact.component.js.map

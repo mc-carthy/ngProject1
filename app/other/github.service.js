@@ -1,4 +1,4 @@
-System.register(["angular2/core", "angular2/router"], function (exports_1, context_1) {
+System.register(["angular2/http", "angular2/core", "rxjs/add/operator/map"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,36 +10,39 @@ System.register(["angular2/core", "angular2/router"], function (exports_1, conte
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, router_1, NavBarComponent;
+    var http_1, core_1, GithubService;
     return {
         setters: [
+            function (http_1_1) {
+                http_1 = http_1_1;
+            },
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (router_1_1) {
-                router_1 = router_1_1;
+            function (_1) {
             }
         ],
         execute: function () {
-            NavBarComponent = class NavBarComponent {
-                constructor(_router) {
-                    this._router = _router;
+            GithubService = class GithubService {
+                constructor(_http) {
+                    this._http = _http;
+                    this._baseUrl = "https://api.github.com/users/";
                 }
-                isCurrentRoute(route) {
-                    var instruction = this._router.generate(route);
-                    return this._router.isRouteActive(instruction);
+                getUser(username) {
+                    return this._http.get(this._baseUrl + username)
+                        .map(res => res.json());
+                }
+                getFollowers(username) {
+                    return this._http.get(this._baseUrl + username + "/followers")
+                        .map(res => res.json());
                 }
             };
-            NavBarComponent = __decorate([
-                core_1.Component({
-                    selector: 'navbar',
-                    templateUrl: 'app/navbar.component.html',
-                    directives: [router_1.ROUTER_DIRECTIVES]
-                }),
-                __metadata("design:paramtypes", [router_1.Router])
-            ], NavBarComponent);
-            exports_1("NavBarComponent", NavBarComponent);
+            GithubService = __decorate([
+                core_1.Injectable(),
+                __metadata("design:paramtypes", [http_1.Http])
+            ], GithubService);
+            exports_1("GithubService", GithubService);
         }
     };
 });
-//# sourceMappingURL=navbar.component.js.map
+//# sourceMappingURL=github.service.js.map

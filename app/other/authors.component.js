@@ -1,4 +1,4 @@
-System.register(["angular2/core", "angular2/router"], function (exports_1, context_1) {
+System.register(["angular2/core", "./author.service"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,36 +10,41 @@ System.register(["angular2/core", "angular2/router"], function (exports_1, conte
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, router_1, NavBarComponent;
+    var core_1, author_service_1, AuthorsComponent;
     return {
         setters: [
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (router_1_1) {
-                router_1 = router_1_1;
+            function (author_service_1_1) {
+                author_service_1 = author_service_1_1;
             }
         ],
         execute: function () {
-            NavBarComponent = class NavBarComponent {
-                constructor(_router) {
-                    this._router = _router;
-                }
-                isCurrentRoute(route) {
-                    var instruction = this._router.generate(route);
-                    return this._router.isRouteActive(instruction);
+            AuthorsComponent = class AuthorsComponent {
+                constructor(authorService) {
+                    this.title = "The title of the authors page";
+                    this.authors = authorService.getAuthors();
                 }
             };
-            NavBarComponent = __decorate([
+            AuthorsComponent = __decorate([
                 core_1.Component({
-                    selector: 'navbar',
-                    templateUrl: 'app/navbar.component.html',
-                    directives: [router_1.ROUTER_DIRECTIVES]
+                    selector: 'authors',
+                    template: `
+            <h2>Authors<h2>
+            {{ title }}
+            <ul>
+                <li *ngFor="#author of authors">
+                    {{ author }}
+                </li>
+            <ul>
+        `,
+                    providers: [author_service_1.AuthorService]
                 }),
-                __metadata("design:paramtypes", [router_1.Router])
-            ], NavBarComponent);
-            exports_1("NavBarComponent", NavBarComponent);
+                __metadata("design:paramtypes", [author_service_1.AuthorService])
+            ], AuthorsComponent);
+            exports_1("AuthorsComponent", AuthorsComponent);
         }
     };
 });
-//# sourceMappingURL=navbar.component.js.map
+//# sourceMappingURL=authors.component.js.map

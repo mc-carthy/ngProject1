@@ -7,7 +7,7 @@ System.register(["angular2/core"], function (exports_1, context_1) {
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, NotFoundComponent;
+    var core_1, SummaryPipe;
     return {
         setters: [
             function (core_1_1) {
@@ -15,17 +15,19 @@ System.register(["angular2/core"], function (exports_1, context_1) {
             }
         ],
         execute: function () {
-            NotFoundComponent = class NotFoundComponent {
+            SummaryPipe = class SummaryPipe {
+                transform(value, args) {
+                    if (value) {
+                        var limit = (args && args[0]) ? parseInt(args[0]) : 50;
+                        return value.substring(0, limit) + "...";
+                    }
+                }
             };
-            NotFoundComponent = __decorate([
-                core_1.Component({
-                    template: `
-        <h1>Not Found</h1>
-    `
-                })
-            ], NotFoundComponent);
-            exports_1("NotFoundComponent", NotFoundComponent);
+            SummaryPipe = __decorate([
+                core_1.Pipe({ name: 'summary' })
+            ], SummaryPipe);
+            exports_1("SummaryPipe", SummaryPipe);
         }
     };
 });
-//# sourceMappingURL=not-found.component.js.map
+//# sourceMappingURL=summary.pipe.js.map
