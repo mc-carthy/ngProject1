@@ -63,7 +63,8 @@ export class PostsComponent implements OnInit {
 
     onPageChanged(page)
     {
-        this.pagedPosts = this.getPostsInPage(page);
+        var startIndex = (page - 1) * this.pageSize;
+        this.pagedPosts = _.take(_.rest(this.posts, startIndex), this.pageSize);
     }
 
     private loadPosts(filter?)
@@ -73,7 +74,8 @@ export class PostsComponent implements OnInit {
             .subscribe(posts => 
             {
                 this.posts = posts;
-                this.pagedPosts = this.getPostsInPage(1);
+                // this.pagedPosts = this.getPostsInPage(1);
+                this.pagedPosts = _.take(this.posts, this.pageSize);
             },
             null,
             () => this.postsLoading = false);
@@ -85,16 +87,16 @@ export class PostsComponent implements OnInit {
             .subscribe(users => this.users = users);
     }
 
-    private getPostsInPage(page)
-    {
-        var result = [];
-        var startIndex = (page - 1) * this.pageSize;
-        var endIndex = Math.min(startIndex + this.pageSize, this.posts.length);
+    // private getPostsInPage(page)
+    // {
+    //     var result = [];
+    //     var startIndex = (page - 1) * this.pageSize;
+    //     var endIndex = Math.min(startIndex + this.pageSize, this.posts.length);
 
-        for (var i = startIndex; i  < endIndex; i++) {
-            result.push(this.posts[i]);            
-        }
+    //     for (var i = startIndex; i  < endIndex; i++) {
+    //         result.push(this.posts[i]);            
+    //     }
 
-        return result;
-    }
+    //     return result;
+    // }
 }
