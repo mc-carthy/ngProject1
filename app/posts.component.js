@@ -25,10 +25,11 @@ System.register(['angular2/core', './post.service'], function(exports_1, context
                 constructor(_postService) {
                     this._postService = _postService;
                     this.posts = [];
+                    this.isLoading = true;
                 }
                 ngOnInit() {
                     this._postService.getPosts()
-                        .subscribe(posts => this.posts = posts);
+                        .subscribe(posts => this.posts = posts, null, () => this.isLoading = false);
                 }
             };
             PostsComponent = __decorate([
