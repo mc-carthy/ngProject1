@@ -1,5 +1,6 @@
 import { Component, OnInit } from 'angular2/core';
 import { PostService } from './post.service';
+import { UserService } from './user.service';
 import { SpinnerComponent } from './spinner.component'
 
 @Component({
@@ -15,26 +16,28 @@ import { SpinnerComponent } from './spinner.component'
             color: #2c3e50;
         }
     `],
-    providers: [PostService],
+    providers: [PostService, UserService],
     directives: [SpinnerComponent]
 })
 
 export class PostsComponent implements OnInit {
     posts = [];
-    postsLoading = true;
+    users = [];
+    postsLoading;
     commentsLoading;
     currentPost;
 
-    constructor(private _postService: PostService)
+    constructor(
+        private _postService: PostService,
+        private _userService: UserService
+    )
     {
     }
 
     ngOnInit()
     {
-        this._postService.getPosts()
-            .subscribe(posts => this.posts = posts,
-            null,
-            () => this.postsLoading = false);
+        this.loadUsers();
+        this.loadPosts();
     }
 
     select(post)
@@ -47,5 +50,26 @@ export class PostsComponent implements OnInit {
                 null,
                 () => this.commentsLoading = false
             );
+    }
+
+    reloadPosts(filter)
+    {
+        this.currentPost = null;
+        this.loadPosts(filter);
+    }
+
+    private loadPosts(filter?)
+    {
+        this.postsLoading = true;
+        this._postService.getPosts(filter)
+            .subscribe(posts => this.posts = posts,
+            null,
+            () => this.postsLoading = false);
+    }
+
+    private loadUsers()
+    {
+        this._userService.getUsers()
+            .subscribe(users => this.users = users);
     }
 }
