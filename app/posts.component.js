@@ -1,4 +1,4 @@
-System.register(['angular2/core', './post.service', './user.service', './spinner.component'], function(exports_1, context_1) {
+System.register(['angular2/core', './post.service', './user.service', './spinner.component', './pagination.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', './post.service', './user.service', './spinner
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, post_service_1, user_service_1, spinner_component_1;
+    var core_1, post_service_1, user_service_1, spinner_component_1, pagination_component_1;
     var PostsComponent;
     return {
         setters:[
@@ -25,6 +25,9 @@ System.register(['angular2/core', './post.service', './user.service', './spinner
             },
             function (spinner_component_1_1) {
                 spinner_component_1 = spinner_component_1_1;
+            },
+            function (pagination_component_1_1) {
+                pagination_component_1 = pagination_component_1_1;
             }],
         execute: function() {
             let PostsComponent = class PostsComponent {
@@ -32,7 +35,9 @@ System.register(['angular2/core', './post.service', './user.service', './spinner
                     this._postService = _postService;
                     this._userService = _userService;
                     this.posts = [];
+                    this.pagedPosts = [];
                     this.users = [];
+                    this.pageSize = 10;
                 }
                 ngOnInit() {
                     this.loadUsers();
@@ -48,14 +53,29 @@ System.register(['angular2/core', './post.service', './user.service', './spinner
                     this.currentPost = null;
                     this.loadPosts(filter);
                 }
+                onPageChanged(page) {
+                    this.pagedPosts = this.getPostsInPage(page);
+                }
                 loadPosts(filter) {
                     this.postsLoading = true;
                     this._postService.getPosts(filter)
-                        .subscribe(posts => this.posts = posts, null, () => this.postsLoading = false);
+                        .subscribe(posts => {
+                        this.posts = posts;
+                        this.pagedPosts = this.getPostsInPage(1);
+                    }, null, () => this.postsLoading = false);
                 }
                 loadUsers() {
                     this._userService.getUsers()
                         .subscribe(users => this.users = users);
+                }
+                getPostsInPage(page) {
+                    var result = [];
+                    var startIndex = (page - 1) * this.pageSize;
+                    var endIndex = Math.min(startIndex + this.pageSize, this.posts.length);
+                    for (var i = startIndex; i < endIndex; i++) {
+                        result.push(this.posts[i]);
+                    }
+                    return result;
                 }
             };
             PostsComponent = __decorate([
@@ -73,7 +93,7 @@ System.register(['angular2/core', './post.service', './user.service', './spinner
         }
     `],
                     providers: [post_service_1.PostService, user_service_1.UserService],
-                    directives: [spinner_component_1.SpinnerComponent]
+                    directives: [spinner_component_1.SpinnerComponent, pagination_component_1.PaginationComponent]
                 }), 
                 __metadata('design:paramtypes', [post_service_1.PostService, user_service_1.UserService])
             ], PostsComponent);
