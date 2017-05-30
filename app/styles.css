@@ -1,3 +1,7 @@
 .ng-touched.ng-invalid {
     border: 1px solid red;
 }
+
+.rounded-thumbnail {
+    border-radius: 100%;
+}
